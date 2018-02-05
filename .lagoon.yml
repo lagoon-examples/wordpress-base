@@ -1,0 +1,32 @@
+docker-compose-yaml: docker-compose.yml
+
+project: wordpress-example
+endpoint: api-lagoon-master.lagoon.ch.amazee.io:31472
+api: api-lagoon-master.lagoon.ch.amazee.io:80
+
+tasks:
+  post-rollout:
+    - run:
+        name: env variables
+        command: env
+        service: cli
+    - run:
+        name: IF no Worpress installed install it via wp with no email sending
+        command: |
+            if [[ $(wp core --allow-root is-installed) == "" ]]; then
+                # no drupal installed, we install drupal from scratch
+                wp core install --title=test --admin_user=test --admin_email=test@example.com --url=wordpress.com.docker.amazee.io --skip-email --allow-root
+            fi
+        service: cli
+
+# cronjobs:
+#   - name: drush cron
+#     schedule: "*/15 * * * *"
+#     command: drush cron
+#     service: cli
+
+# environments:
+#   master:
+#     routes:
+#         - nginx:
+#             - "domain.com"

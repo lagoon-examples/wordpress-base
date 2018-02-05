@@ -1,0 +1,9 @@
+ARG CLI_IMAGE
+FROM ${CLI_IMAGE:-builder} as builder
+
+FROM amazeeio/nginx
+COPY nginx-wordpress.conf /etc/nginx/conf.d/app.conf
+
+COPY --from=builder /app /app
+
+ENV WEBROOT=web
