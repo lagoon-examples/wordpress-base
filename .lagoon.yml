@@ -4,19 +4,19 @@ project: wordpress-example
 endpoint: api-lagoon-master.lagoon.ch.amazee.io:31472
 api: api-lagoon-master.lagoon.ch.amazee.io:80
 
-tasks:
-  post-rollout:
-    - run:
-        name: env variables
-        command: env
-        service: cli
-    - run:
-        name: IF no Worpress installed install it via wp with no email sending
-        command: |
-            if [[ $(cd /app/web && wp core --allow-root is-installed --allow-root) == "" ]]; then
-                wp core install --title=test --admin_user=test --admin_email=test@example.com --url=wordpress.com.docker.amazee.io --skip-email --allow-root
-            fi
-        service: cli
+# tasks:
+#   post-rollout:
+#     - run:
+#         name: env variables
+#         command: env
+#         service: cli
+#     - run:
+#         name: IF no Worpress installed install it via wp with no email sending
+#         command: |
+#             if [[ $(cd /app/web && wp core --allow-root is-installed --allow-root) == "" ]]; then
+#                 wp core install --title=test --admin_user=test --admin_email=test@example.com --url=wordpress-nginx.docker.amazee.io --skip-email --allow-root
+#             fi
+#         service: cli
 
 # cronjobs:
 #   - name: drush cron
