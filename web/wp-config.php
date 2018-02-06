@@ -87,7 +87,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-define('WP_USE_EXT_MYSQL', true);
 
 
 /** Sets up WordPress vars and included files. */
