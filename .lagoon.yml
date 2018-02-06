@@ -13,9 +13,8 @@ tasks:
     - run:
         name: IF no Worpress installed install it via wp with no email sending
         command: |
-            if [[ $(wp core --allow-root is-installed) == "" ]]; then
-                # no drupal installed, we install drupal from scratch
-                wp core install --title=test --admin_user=test --admin_email=test@example.com --url=wordpress.com.docker.amazee.io --skip-email --allow-root
+            if [[ $(wp core --allow-root is-installed --allow-root --directory=/app/web/) == "" ]]; then
+                wp core install --title=test --admin_user=test --admin_email=test@example.com --url=wordpress.com.docker.amazee.io --skip-email --allow-root --directory=/app/web/
             fi
         service: cli
 
