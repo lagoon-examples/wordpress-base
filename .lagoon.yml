@@ -21,6 +21,6 @@ environments:
   master:
     cronjobs:
       - name: cronjob
-        schedule: "H/15 * * * *"
+        schedule: "*/15 * * * *"
         command: cd web && wp cron event run --due-now
         service: cli
