@@ -1,3 +1,4 @@
 vendor
 web/wp
 wp/content/themes/*
+web/content/themes
