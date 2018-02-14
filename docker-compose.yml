@@ -7,7 +7,7 @@ services:
     image: builder
     labels:
       lagoon.type: cli-persistent
-      lagoon.persistent: /app/web/sites/default/files/
+      lagoon.persistent: /app/web/content/uploads/
       lagoon.persistent.name: nginx
     volumes:
       - .:/app:delegated
@@ -25,7 +25,7 @@ services:
       dockerfile: Dockerfile.nginx
     labels:
       lagoon.type: nginx-php-persistent
-      lagoon.persistent: /app/web/sites/default/files/
+      lagoon.persistent: /app/web/content/uploads/
       lagoon.name: nginx
     volumes:
       - .:/app:delegated
@@ -43,7 +43,7 @@ services:
       dockerfile: Dockerfile.php
     labels:
       lagoon.type: nginx-php-persistent
-      lagoon.persistent: /app/web/sites/default/files/
+      lagoon.persistent: /app/web/content/uploads/
       lagoon.name: nginx
 # # Uncomment the following lines to enable xdebug in php and then restart the php container
 #     environment:
