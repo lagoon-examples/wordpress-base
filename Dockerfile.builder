@@ -1,0 +1,14 @@
+FROM amazeeio/php:7.1-cli
+COPY composer.json composer.lock /app/
+
+RUN composer install --no-dev
+
+# Install wp-cli
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp && chmod +x /usr/local/bin/wp
+
+RUN echo 'wp() { /usr/local/bin/wp "$@" --allow-root; }' >>  ~/.bashrc
+
+COPY . /app
+
+ENV WEBROOT=web
+ENV PAGER=less

@@ -1,0 +1,26 @@
+docker-compose-yaml: docker-compose.yml
+
+project: wordpress-example
+endpoint: api-lagoon-master.lagoon.ch.amazee.io:31472
+api: api-lagoon-master.lagoon.ch.amazee.io:80
+
+tasks:
+  post-rollout:
+    - run:
+        name: env variables
+        command: env
+        service: cli
+    - run:
+        name: install wordpress if not installed
+        command: |
+          if ! $(cd web && wp core is-installed); then
+            cd web && wp core install --url=$LAGOON_ROUTE --title=$HOSTNAME --admin_user=admin --admin_email=admin@example.com --skip-email
+          fi
+        service: cli
+environments:
+  master:
+    cronjobs:
+      - name: cronjob
+        schedule: "H/0 * * * *"
+        command: cd web && wp cron event run --due-now
+        service: cli

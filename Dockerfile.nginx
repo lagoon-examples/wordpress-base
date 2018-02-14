@@ -1,0 +1,17 @@
+ARG CLI_IMAGE
+FROM ${CLI_IMAGE:-builder} as builder
+
+FROM amazeeio/nginx
+COPY lagoon/nginx.conf /etc/nginx/conf.d/app.conf
+
+ENV LAGOON_ENVIRONMENT_TYPE=development
+
+RUN mkdir -p /etc/nginx/conf.d-available/wordpress
+RUN mkdir -p /etc/nginx/conf.d/wordpress
+
+COPY lagoon/stagefile/stagefile-*.conf /etc/nginx/conf.d-available/wordpress/
+COPY lagoon/stagefile/stagefile.sh /home/stagefile.sh
+RUN chmod +x /home/stagefile.sh && /home/stagefile.sh
+COPY --from=builder /app /app
+
+ENV WEBROOT=web
