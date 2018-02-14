@@ -13,8 +13,8 @@ tasks:
     - run:
         name: install wordpress if not installed
         command: |
-          if ! $(wp core is-installed); then
-            wp core install --url=$LAGOON_ROUTE --title=$HOSTNAME --admin_user=admin --admin_password=password --admin_email=admin@example.com --skip-email
+          if ! $(cd web && wp core is-installed); then
+            cd web && wp core install --url=$LAGOON_ROUTE --title=$HOSTNAME --admin_user=admin --admin_password=password --admin_email=admin@example.com --skip-email
           fi
         service: cli
 environments:
