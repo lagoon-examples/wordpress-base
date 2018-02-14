@@ -12,7 +12,7 @@ tasks:
         service: cli
     - run:
         name: install wordpress if not installed
-        command:|
+        command: |
           if ! $(wp core is-installed); then
             wp core install --url=$LAGOON_ROUTE --title=$HOSTNAME --admin_user=admin --admin_password=password --admin_email=admin@example.com --skip-email
           fi
