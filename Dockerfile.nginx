@@ -4,14 +4,15 @@ FROM ${CLI_IMAGE:-builder} as builder
 FROM amazeeio/nginx
 COPY lagoon/nginx.conf /etc/nginx/conf.d/app.conf
 
-ENV LAGOON_ENVIRONMENT_TYPE=development
+RUN mkdir -p /etc/nginx/conf.d-available/
 
-RUN mkdir -p /etc/nginx/conf.d-available/wordpress
-RUN mkdir -p /etc/nginx/conf.d/wordpress
+# Adding Stagefile helper
+COPY lagoon/stagefile/stagefile-*.conf /etc/nginx/conf.d-available/
+COPY lagoon/stagefile/stagefile.sh /etc/nginx/helpers/stagefile.sh
+RUN chmod +x /etc/nginx/helpers/stagefile.sh && /etc/nginx/helpers/stagefile.sh
 
-COPY lagoon/stagefile/stagefile-*.conf /etc/nginx/conf.d-available/wordpress/
-COPY lagoon/stagefile/stagefile.sh /home/stagefile.sh
-RUN chmod +x /home/stagefile.sh && /home/stagefile.sh
 COPY --from=builder /app /app
 
 ENV WEBROOT=web
+
+RUN ls  /etc/nginx/conf.d/
