@@ -37,6 +37,9 @@ services:
       - AMAZEEIO_URL=wordpress-nginx.docker.amazee.io
       - AMAZEEIO=AMAZEEIO
       - AMAZEEIO_HTTP_PORT=8080
+      - LAGOON_ENVIRONMENT_TYPE=development
+      - LAGOON_PRODUCTION_HOST=example.com
+      - LAGOON_PRODUCTION_URL=https://example.com/content/uploads/$$1
   php:
     build:
       context: .
