@@ -52,7 +52,8 @@ services:
     depends_on:
       - cli # basically just tells docker-compose to build the cli first
     environment:
-      << : *default-environment # loads the defined environment variables from the top
+      << : *default-environment
+      LAGOON_LOCALDEV_URL: wordpress-nginx.docker.amazee.io # generate another route for nginx
     networks:
       - amazeeio-network
       - default
@@ -80,13 +81,6 @@ services:
       lagoon.type: mariadb
     ports:
       - "3306" # exposes the port 3306 with a random local port, find it with `docker-compose port mariadb 3306`
-    environment:
-      << : *default-environment
-
-  redis:
-    image: amazeeio/redis
-    labels:
-      lagoon.type: redis
     environment:
       << : *default-environment
 

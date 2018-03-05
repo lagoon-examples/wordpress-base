@@ -6,10 +6,10 @@ COPY lagoon/nginx.conf /etc/nginx/conf.d/app.conf
 
 RUN mkdir -p /etc/nginx/conf.d-available/
 
+# Adding Stagefile helper
 COPY lagoon/stagefile/stagefile-*.conf /etc/nginx/conf.d-available/
 COPY lagoon/stagefile/stagefile.sh /etc/nginx/helpers/stagefile.sh
 RUN chmod +x /etc/nginx/helpers/stagefile.sh && /etc/nginx/helpers/stagefile.sh
-
 
 COPY --from=builder /app /app
 
