@@ -52,8 +52,7 @@ services:
     depends_on:
       - cli # basically just tells docker-compose to build the cli first
     environment:
-      << : *default-environment
-      LAGOON_LOCALDEV_URL: wordpress-nginx.docker.amazee.io # generate another route for nginx
+      << : *default-environment # loads the defined environment variables from the top
     networks:
       - amazeeio-network
       - default
