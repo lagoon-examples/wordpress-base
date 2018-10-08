@@ -32,7 +32,7 @@ services:
       # Lagoon Labels
       lagoon.type: cli-persistent
       lagoon.persistent.name: nginx # mount the persistent storage of nginx into this container
-      lagoon.persistent: /app/web/sites/default/files/ # location where the persistent storage should be mounted
+      lagoon.persistent: /app/web/content/uploads/ # location where the persistent storage should be mounted
     << : *default-volumes # loads the defined volumes from the top
     volumes_from: # mount the ssh-agent from the pygmy or cachalot ssh-agent
       - container:amazeeio-ssh-agent
@@ -47,7 +47,7 @@ services:
         CLI_IMAGE: *lagoon-project # Inject the name of the cli image
     labels:
       lagoon.type: nginx-php-persistent
-      lagoon.persistent: /app/web/sites/default/files/ # define where the persistent storage should be mounted too
+      lagoon.persistent: /app/web/content/uploads/ # define where the persistent storage should be mounted too
     << : *default-volumes # loads the defined volumes from the top
     depends_on:
       - cli # basically just tells docker-compose to build the cli first
@@ -66,7 +66,7 @@ services:
     labels:
       lagoon.type: nginx-php-persistent
       lagoon.name: nginx # we want this service be part of the nginx pod in Lagoon
-      lagoon.persistent: /app/web/sites/default/files/ # define where the persistent storage should be mounted too
+      lagoon.persistent: /app/web/content/uploads/ # define where the persistent storage should be mounted too
     << : *default-volumes # loads the defined volumes from the top
     depends_on:
       - cli # basically just tells docker-compose to build the cli first
