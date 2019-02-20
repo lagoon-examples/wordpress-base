@@ -7,10 +7,6 @@ api: api-lagoon-master.lagoon.ch.amazee.io:80
 tasks:
   post-rollout:
     - run:
-        name: env variables
-        command: env
-        service: cli
-    - run:
         name: install wordpress if not installed
         command: |
           if ! $(cd web && wp core is-installed); then
