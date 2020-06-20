@@ -5,10 +5,11 @@ project: wordpress-example
 tasks:
   post-rollout:
     - run:
+        # TODO: This task is for demo purposes only - Best remove this when you going to use this as production instance
         name: install wordpress if not installed
         command: |
           if ! $(cd web && wp core is-installed); then
-            cd web && wp core install --url=$LAGOON_ROUTE --title="amazee.io wordpress-example - $BRANCH" --admin_user=admin --admin_email=admin@example.com --skip-email --allow-root
+            cd web && wp core install --url=$LAGOON_ROUTE --title="amazee.io wordpress-example - $LAGOON_GIT_SAFE_BRANCH" --admin_user=admin --admin_email=admin@example.com --skip-email --allow-root
           fi
         service: cli
 
