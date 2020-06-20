@@ -1,6 +1,6 @@
-FROM amazeeio/php:7.1-cli
-COPY composer.json composer.lock /app/
+FROM amazeeio/php:7.4-cli
 
+COPY composer.json composer.lock /app/
 RUN composer install --no-dev --prefer-dist
 
 # Install wp-cli
