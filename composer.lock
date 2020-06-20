@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a00566b5a0672649366d672abf77698",
+    "content-hash": "6616ee58de2541ecdc56ee8c28b053d5",
     "packages": [
         {
             "name": "composer/installers",
@@ -135,21 +135,21 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "5.3.2",
+            "version": "5.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "a463d27a25d317c270e93f7259e2b138287bf8c4"
+                "reference": "18c41a328193d6f7425a3cea4e01faa220e90218"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/a463d27a25d317c270e93f7259e2b138287bf8c4",
-                "reference": "a463d27a25d317c270e93f7259e2b138287bf8c4",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/18c41a328193d6f7425a3cea4e01faa220e90218",
+                "reference": "18c41a328193d6f7425a3cea4e01faa220e90218",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress-core": "5.3.2",
-                "johnpbloch/wordpress-core-installer": "^1.0",
+                "johnpbloch/wordpress-core": "5.4.2",
+                "johnpbloch/wordpress-core-installer": "^1.0 || ^2.0",
                 "php": ">=5.6.20"
             },
             "type": "package",
@@ -170,27 +170,28 @@
                 "cms",
                 "wordpress"
             ],
-            "time": "2019-12-18T22:32:20+00:00"
+            "time": "2020-06-10T22:05:43+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "5.3.2",
+            "version": "5.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "a282ab0051fac21d4e0cdd828519e6739743ba92"
+                "reference": "3e67d8b6ee6c11e8ce404da4627117fb7fbf9266"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/a282ab0051fac21d4e0cdd828519e6739743ba92",
-                "reference": "a282ab0051fac21d4e0cdd828519e6739743ba92",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/3e67d8b6ee6c11e8ce404da4627117fb7fbf9266",
+                "reference": "3e67d8b6ee6c11e8ce404da4627117fb7fbf9266",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
                 "php": ">=5.6.20"
             },
             "provide": {
-                "wordpress/core-implementation": "5.3.2"
+                "wordpress/core-implementation": "5.4.2"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -200,41 +201,42 @@
             "authors": [
                 {
                     "name": "WordPress Community",
-                    "homepage": "http://wordpress.org/about/"
+                    "homepage": "https://wordpress.org/about/"
                 }
             ],
             "description": "WordPress is open source software you can use to create a beautiful website, blog, or app.",
-            "homepage": "http://wordpress.org/",
+            "homepage": "https://wordpress.org/",
             "keywords": [
                 "blog",
                 "cms",
                 "wordpress"
             ],
-            "time": "2019-12-18T22:32:15+00:00"
+            "time": "2020-06-10T22:05:38+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
-            "version": "1.0.2",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core-installer.git",
-                "reference": "fd12f5cfe27223b92b0f4bbc097059eb23cc56c4"
+                "reference": "237faae9a60a4a2e1d45dce1a5836ffa616de63e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core-installer/zipball/fd12f5cfe27223b92b0f4bbc097059eb23cc56c4",
-                "reference": "fd12f5cfe27223b92b0f4bbc097059eb23cc56c4",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core-installer/zipball/237faae9a60a4a2e1d45dce1a5836ffa616de63e",
+                "reference": "237faae9a60a4a2e1d45dce1a5836ffa616de63e",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0"
+                "composer-plugin-api": "^1.0 || ^2.0",
+                "php": ">=5.6.0"
             },
             "conflict": {
                 "composer/installers": "<1.0.6"
             },
             "require-dev": {
-                "composer/composer": "^1.0",
-                "phpunit/phpunit": ">=4.8.35"
+                "composer/composer": "^1.0 || ^2.0",
+                "phpunit/phpunit": ">=5.7.27"
             },
             "type": "composer-plugin",
             "extra": {
@@ -259,7 +261,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2018-11-09T20:10:38+00:00"
+            "time": "2020-04-16T21:44:57+00:00"
         },
         {
             "name": "oscarotero/env",
