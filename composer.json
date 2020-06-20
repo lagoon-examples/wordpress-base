@@ -39,7 +39,6 @@
     "johnpbloch/wordpress": "5.4.2",
     "oscarotero/env": "^1.1.0",
     "roots/wp-password-bcrypt": "1.0.0",
-    "wpackagist-theme/twentyseventeen": "^1.5",
     "wpackagist-theme/twentytwenty": "^1.4"
   },
   "require-dev": {
