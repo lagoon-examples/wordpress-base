@@ -26,13 +26,14 @@ services:
   cli: # cli container, will be used for executing composer and any local commands (wpcli etc.)
     build:
       context: .
-      dockerfile: lagoon/Dockerfile.cli
+      dockerfile: lagoon/cli.Dockerfile
     image: *lagoon-project # this image will be reused as `CLI_IMAGE` in subsequent Docker builds
     labels:
       # Lagoon Labels
       lagoon.type: cli-persistent
       lagoon.persistent.name: nginx # mount the persistent storage of nginx into this container
       lagoon.persistent: /app/web/content/uploads/ # location where the persistent storage should be mounted
+      lando.type: php-cli
     << : *default-volumes # loads the defined volumes from the top
     volumes_from: # mount the ssh-agent from the pygmy or cachalot ssh-agent
       - container:amazeeio-ssh-agent
@@ -42,12 +43,13 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: lagoon/Dockerfile.nginx
+      dockerfile: lagoon/nginx.Dockerfile
       args:
         CLI_IMAGE: *lagoon-project # Inject the name of the cli image
     labels:
       lagoon.type: nginx-php-persistent
       lagoon.persistent: /app/web/content/uploads/ # define where the persistent storage should be mounted too
+      lando.type: nginx  
     << : *default-volumes # loads the defined volumes from the top
     depends_on:
       - cli # basically just tells docker-compose to build the cli first
@@ -60,13 +62,14 @@ services:
   php:
     build:
       context: .
-      dockerfile: lagoon/Dockerfile.php
+      dockerfile: lagoon/php.Dockerfile
       args:
         CLI_IMAGE: *lagoon-project
     labels:
       lagoon.type: nginx-php-persistent
       lagoon.name: nginx # we want this service be part of the nginx pod in Lagoon
       lagoon.persistent: /app/web/content/uploads/ # define where the persistent storage should be mounted too
+      lando.type: php-fpm
     << : *default-volumes # loads the defined volumes from the top
     depends_on:
       - cli # basically just tells docker-compose to build the cli first
@@ -78,6 +81,7 @@ services:
     image: amazeeio/mariadb
     labels:
       lagoon.type: mariadb
+      lando.type: mariadb
     ports:
       - "3306" # exposes the port 3306 with a random local port, find it with `docker-compose port mariadb 3306`
     environment:
@@ -87,6 +91,7 @@ services:
     image: amazeeio/varnish
     labels:
       lagoon.type: varnish
+      lando.type: varnish
     links:
       - nginx # links varnish to the nginx in this docker-compose project, or it would try to connect to any nginx running in docker
     environment:
