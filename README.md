@@ -1,6 +1,6 @@
 # Wordpress and Lagoon
 
-This repository is an example of how to use Lagoon and Wordpress. It uses our local development environment, Pygmy. For more information on Pygmy, check out the documentation. 
+This repository is an example of how to use Lagoon and Wordpress. It uses our local development environment, Pygmy. For more information on Pygmy, [check out the documentation](https://pygmy.readthedocs.io/en/master/). If you've never set up a Lagoon site locally, you'll need to get Docker and Pygmy set up, [so read the documentation on that](https://lagoon.readthedocs.io/en/latest/using_lagoon/local_development_environments/), it's quick!
 
 ## Getting Started
 
