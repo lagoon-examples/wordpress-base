@@ -11,7 +11,7 @@ This repository is an example of how to use Lagoon and Wordpress. It uses our lo
 5. Run `pygmy up`.
 6. Run `docker-compose build`.
 7. Run `docker-compose up -d`.
-8. You should now have a fully functional Wordpress site at [`wordpress-nginx.docker.amazee.io`](wordpress-nginx.docker.amazee.io)!
+8. You should now have a fully functional Wordpress site at [`wordpress-nginx.docker.amazee.io`](http://wordpress-nginx.docker.amazee.io)!
 
 ## WordPress and Composer
 
