@@ -18,3 +18,7 @@ This repository is an example of how to use Lagoon and Wordpress. It uses our lo
 This setup uses Composer with Wordpress. If you're looking for more information on using Composer and WordPress together, go check out http://composer.rarst.net.
 
 *Note*: When installing plugins, do not install them through the UI. Either use Composer or the Wordpress CLI (included in this example). For more information on how to use the Wordpress CLI, [check out the documentation](https://wp-cli.org/).
+
+## What's Next
+
+This example gives you a working *local* project using WordPress and Lagoon. For information about how to deploy your project using Lagoon, [check out our documentation](https://lagoon.readthedocs.io/en/latest/using_lagoon/setup_project/), [watch our deployment demo](https://www.youtube.com/watch?v=XiaH7gqUXWc_), or [chat with us](https://amazeeio.rocket.chat/home)!
