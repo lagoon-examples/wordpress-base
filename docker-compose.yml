@@ -75,7 +75,7 @@ services:
 
 
   mariadb:
-    image: amazeeio/mariadb
+    image: uselagoon/mariadb:latest
     labels:
       lagoon.type: mariadb
     ports:
@@ -84,7 +84,7 @@ services:
       << : *default-environment
 
   varnish:
-    image: amazeeio/varnish
+    image: uselagoon/varnish:latest
     labels:
       lagoon.type: varnish
     links:
