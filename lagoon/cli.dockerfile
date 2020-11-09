@@ -1,6 +1,6 @@
 FROM uselagoon/php-7.4-cli:latest
 
-COPY composer.json composer.lock /app/
+COPY composer.* /app/
 RUN composer install --no-dev --prefer-dist
 
 # Install wp-cli
