@@ -26,7 +26,7 @@ services:
   cli: # cli container, will be used for executing composer and any local commands (wpcli etc.)
     build:
       context: .
-      dockerfile: lagoon/cli.Dockerfile
+      dockerfile: lagoon/cli.dockerfile
     image: *lagoon-project # this image will be reused as `CLI_IMAGE` in subsequent Docker builds
     labels:
       # Lagoon Labels
@@ -43,7 +43,7 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: lagoon/nginx.Dockerfile
+      dockerfile: lagoon/nginx.dockerfile
       args:
         CLI_IMAGE: *lagoon-project # Inject the name of the cli image
     labels:
@@ -62,7 +62,7 @@ services:
   php:
     build:
       context: .
-      dockerfile: lagoon/php.Dockerfile
+      dockerfile: lagoon/php.dockerfile
       args:
         CLI_IMAGE: *lagoon-project
     labels:
@@ -78,7 +78,7 @@ services:
 
 
   mariadb:
-    image: amazeeio/mariadb
+    image: uselagoon/mariadb:latest
     labels:
       lagoon.type: mariadb
       lando.type: mariadb
@@ -88,7 +88,7 @@ services:
       << : *default-environment
 
   varnish:
-    image: amazeeio/varnish
+    image: uselagoon/varnish:latest
     labels:
       lagoon.type: varnish
       lando.type: varnish
