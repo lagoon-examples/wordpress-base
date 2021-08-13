@@ -78,7 +78,7 @@ services:
 
 
   mariadb:
-    image: uselagoon/mariadb:latest
+    image: uselagoon/mariadb-10.5:latest
     labels:
       lagoon.type: mariadb
       lando.type: mariadb
@@ -88,7 +88,7 @@ services:
       << : *default-environment
 
   varnish:
-    image: uselagoon/varnish:latest
+    image: uselagoon/varnish-5:latest
     labels:
       lagoon.type: varnish
       lando.type: varnish
