@@ -42,7 +42,7 @@ commands:
       - run: 
           name: Check page title matches site-name
           command: |
-            docker-compose exec cli curl -Ls http://nginx:8080 | grep -i "WordPress site-install"
+            docker-compose exec cli curl -kL http://nginx:8080 | grep -i "WordPress site-install"
       # perform some informational checks
   remove_all:
     description: "Remove all containers etc"
