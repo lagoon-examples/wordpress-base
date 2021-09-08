@@ -35,9 +35,13 @@ commands:
             docker-compose exec cli wp core install --allow-root --url=wordpress-example-simple.docker.amazee.io --title="WordPress site-install" --admin_user=admin --admin_email=admin@example.com
       # check that the site is installed
       - run: 
-          name: Check page title matches site-name
+          name: Fix theme-level redirects
           command: |
             docker-compose exec cli sed -i '1 aremove_filter('template_redirect','redirect_canonical');' /app/web/content/themes/twentytwenty/functions.php
+            docker-compose exec cli head -5 /app/web/content/themes/twentytwenty/functions.php
+      - run: 
+          name: Check page title matches site-name
+          command: |
             docker-compose exec cli curl -Ls http://nginx:8080 | grep -i "WordPress site-install"
       # perform some informational checks
   remove_all:
