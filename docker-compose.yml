@@ -8,7 +8,7 @@ x-volumes:
   &default-volumes
     # Define all volumes you would like to have real-time mounted into the docker containers
     volumes:
-      - .:/app:delegated
+      - .:/app:delegated ### Local overrides to mount host filesystem. Automatically removed in CI and PROD.
 
 x-environment:
   &default-environment
@@ -35,8 +35,8 @@ services:
       lagoon.persistent: /app/web/content/uploads/ # location where the persistent storage should be mounted
       lando.type: php-cli
     << : *default-volumes # loads the defined volumes from the top
-    volumes_from: # mount the ssh-agent from the pygmy or cachalot ssh-agent
-      - container:amazeeio-ssh-agent
+    volumes_from: ### mount the ssh-agent from the pygmy or cachalot ssh-agent. Automatically removed in CI.
+      - container:amazeeio-ssh-agent ### Local overrides to mount host SSH keys. Automatically removed in CI.
     environment:
       << : *default-environment # loads the defined environment variables from the top
 
