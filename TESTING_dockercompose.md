@@ -67,12 +67,12 @@ docker-compose exec -T cli bash -c "node --version"
 # Should have yarn
 docker-compose exec -T cli bash -c "yarn --version"
 
-# Ensure that WordPress doesn't redirect the curl request to 8080
+# Ensure that Wordpress doesn't redirect the curl request to 8080
 docker-compose exec -T cli bash -c "sed -i \'1 aremove_filter(\'template_redirect\',\'redirect_canonical\');\' /app/web/content/themes/twentytwenty/functions.php"
 
 # Should have a running Wordpress site served by nginx on port 8080
 # docker-compose exec -T cli bash -c "curl -kL http://nginx:8080" | grep "Wordpress site-install"
-curl -kL http://wordpress-example-simple.docker.amazee.io | grep "Wordpress site-install"
+curl -kL $(docker-compose port nginx 8080) | grep "Wordpress site-install"
 
 # Should be able to db-export and db-import the database
 docker-compose exec -T cli bash -c "wp db export /app/test.sql"
@@ -83,7 +83,7 @@ docker-compose exec -T cli bash -c "rm /app/test.sql*"
 
 # Should still have a running Wordpress site served by nginx on port 8080
 #docker-compose exec -T cli bash -c "curl -kL http://nginx:8080" | grep "Wordpress site-install"
-curl -kL http://wordpress-example-simple.docker.amazee.io | grep "Wordpress site-install"
+curl -kL $(docker-compose port nginx 8080) | grep "Wordpress site-install"
 
 # Should be able to show the wordpress tables
 docker-compose exec -T cli bash -c "wp db query \'SHOW TABLES\'" | grep wp_users

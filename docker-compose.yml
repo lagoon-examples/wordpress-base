@@ -54,6 +54,8 @@ services:
       lagoon.type: nginx-php-persistent
       lagoon.persistent: /app/web/content/uploads/ # define where the persistent storage should be mounted too
       lando.type: nginx  
+    ports:
+      - "8080"
     << : *default-volumes # loads the defined volumes from the top
     depends_on:
       - cli # basically just tells docker-compose to build the cli first
