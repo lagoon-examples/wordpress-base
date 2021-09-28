@@ -55,7 +55,7 @@ commands:
 executors:
   php_docker:
     docker:
-      - image: circleci/php:7.4-cli
+      - image: circleci/php:8.0-cli
         user: root
         environment:
           COMPOSER_ALLOW_SUPERUSER: 1
@@ -90,7 +90,7 @@ jobs:
 
   leia-tests:
     docker:
-      - image: circleci/php:7.4-cli-node
+      - image: circleci/php:8.0-cli-node
         user: root
         environment:
           COMPOSER_ALLOW_SUPERUSER: 1
@@ -110,7 +110,7 @@ jobs:
 
   leia-tests-latest:
     docker:
-      - image: circleci/php:7.4-cli-node
+      - image: circleci/php:8.0-cli-node
         user: root
         environment:
           COMPOSER_ALLOW_SUPERUSER: 1
