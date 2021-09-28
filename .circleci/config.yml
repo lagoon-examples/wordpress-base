@@ -12,7 +12,7 @@ commands:
           command: |
             sed -i -e "/###/d" docker-compose.yml
       - run: docker network prune -f && docker network inspect amazeeio-network >/dev/null || docker network create amazeeio-network
-      - run: docker-compose up -d
+      - run: docker-compose build && docker-compose up -d
       - run: docker info
       - run: 
           name: Check all services are up
@@ -32,13 +32,16 @@ commands:
           name: Ensure all modules are installed and test install Wordpress
           command: |
             docker-compose exec cli composer install
-            docker-compose exec cli wp core install --url=wordpress-example-simple.docker.amazee.io --title="Wordpress site-install" --admin_user=admin --admin_email=admin@example.com
+            docker-compose exec cli wp core install --allow-root --url=wordpress-example-simple.docker.amazee.io --title="WordPress site-install" --admin_user=admin --admin_email=admin@example.com
       # check that the site is installed
+      - run: 
+          name: Fix theme-level redirects
+          command: |
+            docker-compose exec php sed -i "1 aremove_filter('template_redirect','redirect_canonical');" /app/web/content/themes/twentytwenty/functions.php
       - run: 
           name: Check page title matches site-name
           command: |
-            sed -i '1 aremove_filter('template_redirect','redirect_canonical');' web/content/themes/twentytwenty/functions.php
-            docker-compose exec cli curl -Ls http://nginx:8080 | grep -i "WordPress site-install"
+            docker-compose exec cli curl -kLv http://nginx:8080
       # perform some informational checks
   remove_all:
     description: "Remove all containers etc"
