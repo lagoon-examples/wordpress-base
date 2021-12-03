@@ -68,7 +68,7 @@ docker-compose exec -T cli bash -c "node --version"
 docker-compose exec -T cli bash -c "yarn --version"
 
 # Ensure that Wordpress doesn't redirect the curl request to 8080
-docker-compose exec -T php sh -c "sed -i \'1 aremove_filter(\'template_redirect\',\'redirect_canonical\');\' /app/web/content/themes/twentytwenty/functions.php"
+docker-compose exec -T php sh -c "sed -i \'1 aremove_filter(\'template_redirect\',\'redirect_canonical\');\' /app/web/content/themes/twentytwentyone/functions.php"
 
 # Should have a running Wordpress site served by nginx on port 8080
 docker-compose exec -T cli bash -c "curl -kL http://nginx:8080" | grep "Wordpress-site-install"
