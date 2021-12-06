@@ -18,7 +18,7 @@ docker-compose down
 docker-compose build && docker-compose up -d
 
 # Ensure mariadb pod is ready to connect
-docker run --rm --net wordpress-example-simple_default jwilder/dockerize dockerize -wait tcp://mariadb:3306 -timeout 1m
+docker run --rm --net wordpress-example-simple_default amazeeio/dockerize dockerize -wait tcp://mariadb:3306 -timeout 1m
 ```
 
 Verification commands
@@ -46,8 +46,8 @@ docker-compose exec -T cli bash -c "env | grep LAGOON=" | grep cli
 docker-compose exec -T cli bash -c "env" | grep LAGOON_ROUTE | grep wordpress-example-simple.docker.amazee.io
 docker-compose exec -T cli bash -c "env" | grep LAGOON_ENVIRONMENT_TYPE | grep development
 
-# Should be running PHP 7.4
-docker-compose exec -T cli bash -c "php -v" | grep "PHP 7.4"
+# Should be running PHP 8
+docker-compose exec -T cli bash -c "php -v" | grep "PHP 8."
 
 # Should have composer
 docker-compose exec -T cli bash -c "composer --version"
@@ -68,7 +68,9 @@ docker-compose exec -T cli bash -c "node --version"
 docker-compose exec -T cli bash -c "yarn --version"
 
 # Ensure that Wordpress doesn't redirect the curl request to 8080
-docker-compose exec -T php sh -c "sed -i \'1 aremove_filter(\'template_redirect\',\'redirect_canonical\');\' /app/web/content/themes/twentytwentyone/functions.php"
+# remove_filter('template_redirect', 'redirect_canonical');
+#docker-compose exec -T php sh -c "sed -i \'1 aremove_filter(\'template_redirect\',\'redirect_canonical\');\' /app/web/content/themes/twentytwentyone/functions.php"
+docker-compose exec -T php sh -c "echo cmVtb3ZlX2ZpbHRlcigndGVtcGxhdGVfcmVkaXJlY3QnLCAncmVkaXJlY3RfY2Fub25pY2FsJyk7 | base64 -d >> /app/web/content/themes/twentytwentyone/functions.php"
 
 # Should have a running Wordpress site served by nginx on port 8080
 docker-compose exec -T cli bash -c "curl -kL http://nginx:8080" | grep "Wordpress-site-install"
