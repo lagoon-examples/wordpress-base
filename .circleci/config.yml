@@ -37,7 +37,7 @@ commands:
       - run: 
           name: Fix theme-level redirects
           command: |
-            docker-compose exec php sed -i "1 aremove_filter('template_redirect','redirect_canonical');" /app/web/content/themes/twentytwenty/functions.php
+            docker-compose exec php sed -i "1 aremove_filter('template_redirect','redirect_canonical');" /app/web/content/themes/twentytwentyone/functions.php
       - run: 
           name: Check page title matches site-name
           command: |
@@ -55,7 +55,7 @@ commands:
 executors:
   php_docker:
     docker:
-      - image: circleci/php:7.4-cli
+      - image: circleci/php:8.0-cli
         user: root
         environment:
           COMPOSER_ALLOW_SUPERUSER: 1
@@ -90,7 +90,7 @@ jobs:
 
   leia-tests:
     docker:
-      - image: circleci/php:7.4-cli-node
+      - image: circleci/php:8.0-cli-node
         user: root
         environment:
           COMPOSER_ALLOW_SUPERUSER: 1
@@ -110,7 +110,7 @@ jobs:
 
   leia-tests-latest:
     docker:
-      - image: circleci/php:7.4-cli-node
+      - image: circleci/php:8.0-cli-node
         user: root
         environment:
           COMPOSER_ALLOW_SUPERUSER: 1
@@ -151,8 +151,7 @@ workflows:
           filters:
             branches:
               only:
-                - 9.x-advanced
-                - 8.x-advanced
+                - main
     jobs:
       - composer
       - docker-compose

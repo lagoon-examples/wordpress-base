@@ -4,3 +4,6 @@ config:
   flavor: wordpress
   build:
     - composer install
+tooling:
+  wp:
+    service: cli
