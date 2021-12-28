@@ -24,7 +24,11 @@
     "forum": "https://discourse.roots.io/category/bedrock"
   },
   "config": {
-    "preferred-install": "dist"
+    "preferred-install": "dist",
+    "allow-plugins": {
+      "composer/installers": true,
+      "johnpbloch/wordpress-core-installer": true
+    }
   },
   "repositories": [
     {
@@ -34,14 +38,14 @@
   ],
   "require": {
     "composer/installers": "2.0.1",
-    "vlucas/phpdotenv": "5.4.0",
+    "vlucas/phpdotenv": "v5.4.1",
     "johnpbloch/wordpress": "5.8.2",
     "oscarotero/env": "v2.1.0",
     "roots/wp-password-bcrypt": "1.1.0",
     "wpackagist-theme/twentytwentyone": "1.4"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "3.6.1"
+    "squizlabs/php_codesniffer": "3.6.2"
   },
   "extra": {
     "installer-paths": {
