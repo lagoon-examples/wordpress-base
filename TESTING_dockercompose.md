@@ -1,4 +1,4 @@
-Docker Compose Wordpress simple - php7.4, nginx, mariadb
+Docker Compose Wordpress simple - php8.0, nginx, mariadb
 ========================================================
 
 This is a docker-compose version of the Lando example tests:

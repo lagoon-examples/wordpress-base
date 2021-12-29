@@ -7,3 +7,8 @@ config:
 tooling:
   wp:
     service: cli
+services:
+  cli:
+    overrides:
+      environment:
+        HTTP_HOST: wordpress-example.lndo.site
