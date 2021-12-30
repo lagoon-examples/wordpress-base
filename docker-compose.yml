@@ -107,6 +107,16 @@ services:
       - amazeeio-network
       - default
 
+  elasticsearch:
+    image: uselagoon/elasticsearch-7:latest
+    labels:
+      lagoon.type: elasticsearch
+      lando.type: elasticsearch
+    ports:
+      - "9200" # exposes the port 9200 with a random local port, find it with `docker-compose port elasticsearch 9200`
+    environment:
+      << : *default-environment
+
 networks:
   amazeeio-network:
     external: true
