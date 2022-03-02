@@ -1,5 +1,10 @@
 {
+  "baseBranches": [
+    "main"
+  ],
   "extends": ["config:base"],
+  "automerge": true,
+  "automergeType": "pr",
   "dependencyDashboard": true,
   "prHourlyLimit": 0
 }
