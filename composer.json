@@ -45,7 +45,7 @@
     "wpackagist-theme/twentytwentyone": "1.6"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "3.6.2"
+    "squizlabs/php_codesniffer": "3.7.0"
   },
   "extra": {
     "installer-paths": {
