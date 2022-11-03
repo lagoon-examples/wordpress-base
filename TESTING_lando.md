@@ -71,8 +71,8 @@ lando lagoon --version | grep lagoon
 
 # Ensure that Wordpress doesn't redirect the curl request to 8080
 # remove_filter('template_redirect', 'redirect_canonical');
-#docker-compose exec -T php sh -c "sed -i \'1 aremove_filter(\'template_redirect\',\'redirect_canonical\');\' /app/web/content/themes/twentytwentyone/functions.php"
-lando ssh -s php -c "echo cmVtb3ZlX2ZpbHRlcigndGVtcGxhdGVfcmVkaXJlY3QnLCAncmVkaXJlY3RfY2Fub25pY2FsJyk7 | base64 -d >> /app/web/content/themes/twentytwentyone/functions.php"
+#docker-compose exec -T php sh -c "sed -i \'1 aremove_filter(\'template_redirect\',\'redirect_canonical\');\' /app/web/content/themes/twentytwentythree/functions.php"
+lando ssh -s php -c "echo cmVtb3ZlX2ZpbHRlcigndGVtcGxhdGVfcmVkaXJlY3QnLCAncmVkaXJlY3RfY2Fub25pY2FsJyk7 | base64 -d >> /app/web/content/themes/twentytwentythree/functions.php"
 
 # Should have a running Wordpress site served by nginx on port 8080
 lando ssh -c "curl -kL http://nginx:8080" | grep "Wordpress-site-install"
