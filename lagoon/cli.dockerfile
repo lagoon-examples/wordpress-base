@@ -1,8 +1,7 @@
-FROM uselagoon/php-8.0-cli:latest
+FROM uselagoon/php-8.1-cli:latest
 
 COPY composer.* /app/
-RUN composer self-update --2 \
-  && composer install --no-dev --prefer-dist
+RUN composer install --no-dev --prefer-dist
 
 # Install wp-cli
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp && chmod +x /usr/local/bin/wp

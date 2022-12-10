@@ -33,10 +33,10 @@ lando wp cache flush
 lando wp core verify-checksums | grep "Success"
 
 # Should have all the services we expect
-docker ps --filter label=com.docker.compose.project=wordpressexamplesimple | grep Up | grep wordpressexamplesimple_nginx_1
-docker ps --filter label=com.docker.compose.project=wordpressexamplesimple | grep Up | grep wordpressexamplesimple_mariadb_1
-docker ps --filter label=com.docker.compose.project=wordpressexamplesimple | grep Up | grep wordpressexamplesimple_php_1
-docker ps --filter label=com.docker.compose.project=wordpressexamplesimple | grep Up | grep wordpressexamplesimple_cli_1
+docker ps --filter label=com.docker.compose.project=wordpressbase | grep Up | grep wordpressbase_nginx_1
+docker ps --filter label=com.docker.compose.project=wordpressbase | grep Up | grep wordpressbase_mariadb_1
+docker ps --filter label=com.docker.compose.project=wordpressbase | grep Up | grep wordpressbase_php_1
+docker ps --filter label=com.docker.compose.project=wordpressbase | grep Up | grep wordpressbase_cli_1
 
 # Should ssh against the cli container by default
 lando ssh -c "env | grep LAGOON=" | grep cli
