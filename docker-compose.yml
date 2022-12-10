@@ -15,14 +15,17 @@ x-environment:
   &default-environment
     LAGOON_PROJECT: *lagoon-project
     # Route that should be used locally
-    LAGOON_ROUTE: http://wordpress-example-simple.docker.amazee.io
+    LAGOON_ROUTE: &default-url http://${COMPOSE_PROJECT_NAME:-wordpress-base}.docker.amazee.io
     # Uncomment if you like to have the system behave like in production
     #LAGOON_ENVIRONMENT_TYPE: production
     # Uncomment to enable xdebug and then restart via `docker-compose up -d`
     #XDEBUG_ENABLE: "true"
+    HTTP_HOST: *default-url
 
 volumes:
   uploads:
+    {}
+  db:
     {}
 
 services:
@@ -84,7 +87,7 @@ services:
 
 
   mariadb:
-    image: uselagoon/mariadb-10.5:latest
+    image: uselagoon/mariadb-10.6:latest
     labels:
       lagoon.type: mariadb
       lando.type: mariadb
@@ -92,12 +95,16 @@ services:
       - "3306" # exposes the port 3306 with a random local port, find it with `docker-compose port mariadb 3306`
     environment:
       << : *default-environment
+    volumes:
+      - db:/var/lib/mysql
 
   varnish:
-    image: uselagoon/varnish-5:latest
+    image: uselagoon/varnish-7:latest
     labels:
       lagoon.type: varnish
       lando.type: varnish
+    ports:
+      - "8080"
     links:
       - nginx # links varnish to the nginx in this docker-compose project, or it would try to connect to any nginx running in docker
     environment:
