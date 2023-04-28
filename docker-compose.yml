@@ -1,5 +1,3 @@
-version: '2.3'
-
 x-lagoon-project:
   # Lagoon project name (leave `&lagoon-project` when you edit this)
   &lagoon-project wordpress-example
@@ -21,6 +19,11 @@ x-environment:
     # Uncomment to enable xdebug and then restart via `docker-compose up -d`
     #XDEBUG_ENABLE: "true"
     HTTP_HOST: *default-url
+
+x-user:
+  &default-user
+    # The default user under which the containers should run. Change this if you are on linux and run with another user than id `1000`
+    user: '1000'
 
 volumes:
   uploads:
@@ -59,7 +62,7 @@ services:
       lando.type: nginx  
     ports:
       - "8080"
-    << : *default-volumes # loads the defined volumes from the top
+    << : [*default-volumes, *default-user]
     depends_on:
       - cli # basically just tells docker-compose to build the cli first
     environment:
@@ -79,7 +82,7 @@ services:
       lagoon.name: nginx # we want this service be part of the nginx pod in Lagoon
       lagoon.persistent: /app/web/content/uploads/ # define where the persistent storage should be mounted too
       lando.type: php-fpm
-    << : *default-volumes # loads the defined volumes from the top
+    << : [*default-volumes, *default-user]
     depends_on:
       - cli # basically just tells docker-compose to build the cli first
     environment:
