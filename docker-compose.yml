@@ -44,6 +44,7 @@ services:
       lagoon.persistent.name: nginx # mount the persistent storage of nginx into this container
       lagoon.persistent: /app/web/content/uploads/ # location where the persistent storage should be mounted
       lando.type: php-cli
+    user: root
     << : *default-volumes # loads the defined volumes from the top
     volumes_from: ### mount the ssh-agent from the pygmy or cachalot ssh-agent. Automatically removed in CI.
       - container:amazeeio-ssh-agent ### Local overrides to mount host SSH keys. Automatically removed in CI.
