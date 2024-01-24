@@ -45,7 +45,7 @@ jobs:
         docker-compose pull --ignore-pull-failures
     - name: Install test harness
       run: |
-        yarn add leia-parser mocha chai command-line-test
+        yarn add leia-parser mocha chai@4 command-line-test
     - name: Generate test files
       run: |
         yarn leia "TESTING*.md" test -r 2 -s 'Start up tests' -t 'Verification commands' -c 'Destroy tests' --split-file
