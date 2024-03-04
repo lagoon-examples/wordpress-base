@@ -11,7 +11,7 @@ This repository is an example of how to use Lagoon and WordPress. It uses our lo
 5. Run `docker-compose build`.
 6. Run `docker-compose up -d`.
 7. Run `docker-compose exec cli composer install` - this will make sure all of the dependencies have been added inside of the container.
-8. You should now have a fully functional local WordPress site at [`wordpress-nginx.docker.amazee.io`](http://wordpress-nginx.docker.amazee.io)!
+8. You should now have a fully functional local WordPress site at [`wordpress-base.docker.amazee.io`](http://wordpress-base.docker.amazee.io)!
 
 ## WordPress and Composer
 
