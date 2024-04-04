@@ -20,6 +20,11 @@ x-environment:
     #XDEBUG_ENABLE: "true"
     HTTP_HOST: *default-url
 
+x-user:
+  &default-user
+    # The default user under which the containers should run. Change this if you are on linux and run with another user than id `1000`
+    user: '1000'
+
 volumes:
   uploads:
     {}
@@ -91,13 +96,15 @@ services:
       lando.type: mariadb
     ports:
       - "3306" # exposes the port 3306 with a random local port, find it with `docker-compose port mariadb 3306`
+
+    << : *default-user
     environment:
       << : *default-environment
     volumes:
       - db:/var/lib/mysql
 
   varnish:
-    image: uselagoon/varnish-7:latest
+    image: uselagoon/varnish-6:latest
     labels:
       lagoon.type: varnish
       lando.type: varnish
@@ -105,6 +112,7 @@ services:
       - "8080"
     links:
       - nginx # links varnish to the nginx in this docker-compose project, or it would try to connect to any nginx running in docker
+    << : *default-user
     environment:
       << : *default-environment
       LAGOON_LOCALDEV_URL: wordpress-varnish.docker.amazee.io # generate another route for varnish
