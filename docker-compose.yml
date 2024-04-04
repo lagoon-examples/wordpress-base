@@ -16,7 +16,7 @@ x-environment:
     LAGOON_ROUTE: &default-url http://${COMPOSE_PROJECT_NAME:-wordpress-base}.docker.amazee.io
     # Uncomment if you like to have the system behave like in production
     #LAGOON_ENVIRONMENT_TYPE: production
-    # Uncomment to enable xdebug and then restart via `docker-compose up -d`
+    # Uncomment to enable xdebug and then restart via `docker compose up -d`
     #XDEBUG_ENABLE: "true"
     HTTP_HOST: *default-url
 
@@ -59,7 +59,7 @@ services:
       - "8080"
     << : *default-volumes
     depends_on:
-      - cli # basically just tells docker-compose to build the cli first
+      - cli # basically just tells docker compose to build the cli first
     environment:
       << : *default-environment # loads the defined environment variables from the top
     networks:
@@ -79,7 +79,7 @@ services:
       lando.type: php-fpm
     << : *default-volumes
     depends_on:
-      - cli # basically just tells docker-compose to build the cli first
+      - cli # basically just tells docker compose to build the cli first
     environment:
       << : *default-environment # loads the defined environment variables from the top
 
@@ -90,7 +90,7 @@ services:
       lagoon.type: mariadb
       lando.type: mariadb
     ports:
-      - "3306" # exposes the port 3306 with a random local port, find it with `docker-compose port mariadb 3306`
+      - "3306" # exposes the port 3306 with a random local port, find it with `docker compose port mariadb 3306`
     environment:
       << : *default-environment
     volumes:
@@ -104,7 +104,7 @@ services:
     ports:
       - "8080"
     links:
-      - nginx # links varnish to the nginx in this docker-compose project, or it would try to connect to any nginx running in docker
+      - nginx # links varnish to the nginx in this docker compose project, or it would try to connect to any nginx running in docker
     environment:
       << : *default-environment
       LAGOON_LOCALDEV_URL: wordpress-varnish.docker.amazee.io # generate another route for varnish
