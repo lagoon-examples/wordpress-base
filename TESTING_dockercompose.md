@@ -70,7 +70,6 @@ docker compose exec -T cli bash -c "yarn --version"
 
 # Ensure that Wordpress doesn't redirect the curl request to 8080
 # remove_filter('template_redirect', 'redirect_canonical');
-#docker compose exec -T php sh -c "sed -i \'1 aremove_filter(\'template_redirect\',\'redirect_canonical\');\' /app/web/content/themes/twentytwentyfour/functions.php"
 docker compose exec -T php sh -c "echo PD9waHAgcmVtb3ZlX2ZpbHRlcigndGVtcGxhdGVfcmVkaXJlY3QnLCAncmVkaXJlY3RfY2Fub25pY2FsJyk7 | base64 -d > /app/web/content/themes/twentytwentyfour/functions.php"
 
 # Should have a running Wordpress site served by nginx on port 8080
@@ -94,11 +93,13 @@ docker compose exec -T cli bash -c "curl -kL http://nginx:8080" | grep "Wordpres
 #docker compose port nginx 8080 | xargs curl -kL | grep "Wordpress-site-install"
 
 # Should be able to show the wordpress tables
-docker compose exec -T cli bash -c "wp db query \'SHOW TABLES\'" | grep wp_users
+docker compose exec -T cli bash -c "echo U0hPVyBUQUJMRVM7 | base64 -d > /app/showtables.sql"
+docker compose exec -T cli bash -c "wp db query < /app/showtables.sql" | grep wp_users
 
 # Should be able to rebuild and persist the database
 docker compose build && docker compose up -d
-docker compose exec -T cli bash -c "wp db query \'SHOW TABLES\'" | grep wp_users
+docker compose exec -T cli bash -c "echo U0hPVyBUQUJMRVM7 | base64 -d > /app/showtables.sql"
+docker compose exec -T cli bash -c "wp db query < /app/showtables.sql" | grep wp_users
 ```
 
 Destroy tests
