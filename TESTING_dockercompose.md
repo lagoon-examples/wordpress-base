@@ -70,7 +70,7 @@ docker compose exec -T cli bash -c "yarn --version"
 
 # Ensure that Wordpress doesn't redirect the curl request to 8080
 # remove_filter('template_redirect', 'redirect_canonical');
-docker compose exec -T php sh -c "echo PD9waHAgcmVtb3ZlX2ZpbHRlcigndGVtcGxhdGVfcmVkaXJlY3QnLCAncmVkaXJlY3RfY2Fub25pY2FsJyk7 | base64 -d > /app/web/content/themes/twentytwentyfour/functions.php"
+docker compose exec -T php sh -c "echo PD9waHAgcmVtb3ZlX2ZpbHRlcigndGVtcGxhdGVfcmVkaXJlY3QnLCAncmVkaXJlY3RfY2Fub25pY2FsJyk7 | base64 -d > /app/web/content/themes/twentytwentyfive/functions.php"
 
 # Should have a running Wordpress site served by nginx on port 8080
 docker compose exec -T cli bash -c "curl -kL http://nginx:8080" | grep "Wordpress-site-install"
