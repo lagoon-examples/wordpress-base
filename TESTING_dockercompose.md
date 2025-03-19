@@ -30,7 +30,7 @@ Run the following commands to validate things are rolling as they should.
 # Should be able to site install via wp-cli
 docker compose exec -T cli bash -c "composer install"
 docker compose exec -T cli bash -c "wp core install --allow-root --url=wordpress-base.docker.amazee.io --title=\'Wordpress-site-install\' --admin_user=admin --admin_email=admin@example.com"
-docker compose exec -T cli bash -c "wp theme activate twentytwentyfour"
+docker compose exec -T cli bash -c "wp theme activate twentytwentyfive"
 docker compose exec -T cli bash -c "wp cache flush"
 docker compose exec -T cli bash -c "wp core verify-checksums" | grep "Success"
 
@@ -70,7 +70,7 @@ docker compose exec -T cli bash -c "yarn --version"
 
 # Ensure that Wordpress doesn't redirect the curl request to 8080
 # remove_filter('template_redirect', 'redirect_canonical');
-docker compose exec -T php sh -c "echo PD9waHAgcmVtb3ZlX2ZpbHRlcigndGVtcGxhdGVfcmVkaXJlY3QnLCAncmVkaXJlY3RfY2Fub25pY2FsJyk7 | base64 -d > /app/web/content/themes/twentytwentyfour/functions.php"
+docker compose exec -T php sh -c "echo PD9waHAgcmVtb3ZlX2ZpbHRlcigndGVtcGxhdGVfcmVkaXJlY3QnLCAncmVkaXJlY3RfY2Fub25pY2FsJyk7 | base64 -d > /app/web/content/themes/twentytwentyfive/functions.php"
 
 # Should have a running Wordpress site served by nginx on port 8080
 docker compose exec -T cli bash -c "curl -kL http://nginx:8080" | grep "Wordpress-site-install"
@@ -82,10 +82,10 @@ docker compose exec -T cli bash -c "curl -I http://varnish:8080" | grep "Varnish
 docker compose exec -T varnish sh -c "varnishlog -d" | grep "User-Agent" | grep "curl"
 
 # Should be able to db-export and db-import the database
-docker compose exec -T cli bash -c "wp db export /app/test.sql"
-docker compose exec -T cli bash -c "wp db drop --yes"
-docker compose exec -T cli bash -c "wp db create"
-docker compose exec -T cli bash -c "wp db import /app/test.sql"
+docker compose exec -T cli bash -c "wp db --defaults export /app/test.sql"
+docker compose exec -T cli bash -c "wp db --defaults drop --yes"
+docker compose exec -T cli bash -c "wp db --defaults create"
+docker compose exec -T cli bash -c "wp db --defaults import /app/test.sql"
 docker compose exec -T cli bash -c "rm /app/test.sql*"
 
 # Should still have a running Wordpress site served by nginx on port 8080
@@ -94,12 +94,12 @@ docker compose exec -T cli bash -c "curl -kL http://nginx:8080" | grep "Wordpres
 
 # Should be able to show the wordpress tables
 docker compose exec -T cli bash -c "echo U0hPVyBUQUJMRVM7 | base64 -d > /app/showtables.sql"
-docker compose exec -T cli bash -c "wp db query < /app/showtables.sql" | grep wp_users
+docker compose exec -T cli bash -c "wp db --defaults query < /app/showtables.sql" | grep wp_users
 
 # Should be able to rebuild and persist the database
 docker compose build && docker compose up -d
 docker compose exec -T cli bash -c "echo U0hPVyBUQUJMRVM7 | base64 -d > /app/showtables.sql"
-docker compose exec -T cli bash -c "wp db query < /app/showtables.sql" | grep wp_users
+docker compose exec -T cli bash -c "wp db --defaults query < /app/showtables.sql" | grep wp_users
 ```
 
 Destroy tests
