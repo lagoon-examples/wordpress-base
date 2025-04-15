@@ -42,7 +42,7 @@
     "johnpbloch/wordpress": "6.8.0",
     "oscarotero/env": "v2.1.1",
     "roots/wp-password-bcrypt": "1.2.0",
-    "wpackagist-theme/twentytwentyfive": "1.1"
+    "wpackagist-theme/twentytwentyfive": "1.2"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "3.12.2"
