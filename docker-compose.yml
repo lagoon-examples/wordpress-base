@@ -51,6 +51,8 @@ services:
       dockerfile: lagoon/nginx.dockerfile
       args:
         CLI_IMAGE: *lagoon-project # Inject the name of the cli image
+      additional_contexts:
+        builder: 'service:cli' # Ensure cli is built first
     labels:
       lagoon.type: nginx-php-persistent
       lagoon.persistent: /app/web/content/uploads/ # define where the persistent storage should be mounted too
@@ -59,7 +61,7 @@ services:
       - "8080"
     << : *default-volumes
     depends_on:
-      - cli # basically just tells docker compose to build the cli first
+      - cli
     environment:
       << : *default-environment # loads the defined environment variables from the top
     networks:
@@ -72,6 +74,8 @@ services:
       dockerfile: lagoon/php.dockerfile
       args:
         CLI_IMAGE: *lagoon-project
+      additional_contexts:
+        builder: 'service:cli' # Ensure cli is built first
     labels:
       lagoon.type: nginx-php-persistent
       lagoon.name: nginx # we want this service be part of the nginx pod in Lagoon
@@ -79,13 +83,13 @@ services:
       lando.type: php-fpm
     << : *default-volumes
     depends_on:
-      - cli # basically just tells docker compose to build the cli first
+      - cli
     environment:
       << : *default-environment # loads the defined environment variables from the top
 
 
   mariadb:
-    image: uselagoon/mariadb-10.6:latest
+    image: uselagoon/mariadb-10.11:latest
     labels:
       lagoon.type: mariadb
       lando.type: mariadb
