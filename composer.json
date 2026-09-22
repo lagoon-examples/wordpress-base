@@ -39,7 +39,7 @@
   "require": {
     "composer/installers": "2.3.0",
     "vlucas/phpdotenv": "5.7.0",
-    "johnpbloch/wordpress": "7.1.0",
+    "johnpbloch/wordpress": "7.1.2",
     "oscarotero/env": "v2.1.1",
     "wpackagist-theme/twentytwentyfive": "1.5"
   },
