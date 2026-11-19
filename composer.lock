@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f8a12171838881d787903f47fbf6b3f5",
+    "content-hash": "10dc69c1ccf466e3f9d64e1225e6a73f",
     "packages": [
         {
             "name": "composer/installers",
@@ -216,20 +216,20 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "7.1.4",
+            "version": "7.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "8fd3df90be180e75396bc3c5ad03ee11d8a957e7"
+                "reference": "d732c0a26efaf0d99f9e2cff633113c35fb535f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/8fd3df90be180e75396bc3c5ad03ee11d8a957e7",
-                "reference": "8fd3df90be180e75396bc3c5ad03ee11d8a957e7",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/d732c0a26efaf0d99f9e2cff633113c35fb535f5",
+                "reference": "d732c0a26efaf0d99f9e2cff633113c35fb535f5",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress-core": "7.1.4",
+                "johnpbloch/wordpress-core": "7.1.5",
                 "johnpbloch/wordpress-core-installer": "^1.0 || ^2.0",
                 "php": ">=7.0.0"
             },
@@ -258,20 +258,21 @@
                 "issues": "https://core.trac.wordpress.org/",
                 "source": "https://core.trac.wordpress.org/browser"
             },
-            "time": "2026-10-28T19:49:43+00:00"
+            "time": "2026-11-18T18:01:50+00:00",
+            "published-time": "2026-11-18T18:02:00+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "7.1.4",
+            "version": "7.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "36ac9875ff3f09afe1d91f996bfac0ac261922ed"
+                "reference": "153623a271706b442dfc66e2159820e834737c0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/36ac9875ff3f09afe1d91f996bfac0ac261922ed",
-                "reference": "36ac9875ff3f09afe1d91f996bfac0ac261922ed",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/153623a271706b442dfc66e2159820e834737c0d",
+                "reference": "153623a271706b442dfc66e2159820e834737c0d",
                 "shasum": ""
             },
             "require": {
@@ -279,7 +280,7 @@
                 "php": ">=7.4"
             },
             "provide": {
-                "wordpress/core-implementation": "7.1.4"
+                "wordpress/core-implementation": "7.1.5"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -306,7 +307,8 @@
                 "source": "https://core.trac.wordpress.org/browser",
                 "wiki": "https://codex.wordpress.org/"
             },
-            "time": "2026-10-28T19:49:26+00:00"
+            "time": "2026-11-18T18:01:43+00:00",
+            "published-time": "2026-11-18T18:01:59+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -360,7 +362,8 @@
                 "issues": "https://github.com/johnpbloch/wordpress-core-installer/issues",
                 "source": "https://github.com/johnpbloch/wordpress-core-installer/tree/master"
             },
-            "time": "2020-04-16T21:44:57+00:00"
+            "time": "2020-04-16T21:44:57+00:00",
+            "published-time": "2020-04-16T21:45:54+00:00"
         },
         {
             "name": "oscarotero/env",
@@ -940,5 +943,5 @@
     "prefer-lowest": false,
     "platform": {},
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.11.0"
 }
